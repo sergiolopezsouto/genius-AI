@@ -9,6 +9,7 @@ import Sidebar from "./sidebar"
 
 
 const MobileSidebar = () => {
+    
     const [isMounted, setIsMounted] = useState(false)
 
     useEffect( () => {
