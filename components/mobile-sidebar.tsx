@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from "react"
 import { Menu } from "lucide-react"
 
 import { Button } from "./ui/button"
@@ -8,18 +9,30 @@ import Sidebar from "./sidebar"
 
 
 const MobileSidebar = () => {
-  return (
-    <Sheet>
-        <SheetTrigger>
-            <Button variant="ghost" size="icon" className='md:hidden'>
-                <Menu />
-            </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="p-0">
-            <Sidebar />
-        </SheetContent>
-    </Sheet>
-  )
+    const [isMounted, setIsMounted] = useState(false)
+
+    useEffect( () => {
+        setIsMounted(true)
+    }, [])
+
+    if(!isMounted) {
+        return (
+            null
+        )
+    }
+
+    return (
+        <Sheet>
+            <SheetTrigger>
+                <Button variant="ghost" size="icon" className='md:hidden'>
+                    <Menu />
+                </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0">
+                <Sidebar />
+            </SheetContent>
+        </Sheet>
+    )
 }
 
 export default MobileSidebar
